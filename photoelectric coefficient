@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.ticker
+matplotlib.rcParams.update({'font.size': 13})
+x = [7.99, 10, 12.7, 15.5, 19.5]
+y1 = [1.06E-03,	5.24E-04,	2.45E-04,	1.29E-04,	6.17E-05]
+y2 = [0.552,	0.356,	0.217,	0.141,	0.086]
+
+
+fig, ax1 = plt.subplots()
+
+color = 'tab:red'
+ax1.set_xlabel('Energia (KeV)')
+ax1.set_ylabel('Coeficiente Fotoelétrico' + r"$ (\mu m^{-1}) $", color=color, fontsize=15)
+ax1.plot(x, y1, color=color)
+ax1.tick_params(axis='y', labelcolor=color)
+
+ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+
+color = 'tab:blue'
+ax2.set_ylabel('Dose medida - DWD (MGy)', color=color, fontsize= 15)  # we already handled the x-label with ax1
+ax2.plot(x, y2, color=color)
+
+#current_values = plt.gca().get_yticks()
+#plt.gca().set_yticklabels(['{:,.0f}'.format(x) for x in current_values])
+
+fig.tight_layout()  # otherwise the right y-label is slightly clipped
+plt.show()
